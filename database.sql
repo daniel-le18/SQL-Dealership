@@ -5,6 +5,8 @@ DROP DATABASE IF EXISTS dealership;
 CREATE DATABASE dealership;
 USE dealership;
 
+
+
 CREATE TABLE Employee (
     ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(20) NOT NULL,
@@ -15,6 +17,18 @@ CREATE TABLE Employee (
     address VARCHAR(50)
 );
 
+INSERT INTO Employee(ID, first_name, last_name, salary_anual, date_of_birth, ssn, address)
+VALUES (1, 'Peter', 'Parker', 100000, curdate(), 31415926, '20 Ingram Street'),
+       (2, 'Johnny', 'Storm', 120000, curdate(), 27182818, '300 Madison Avenue'),
+       (3, 'Scott', 'Summers', 60000, curdate(), 66236070, '1407 Graymalkin Lane'),
+       (4, 'James', 'Barnes', 150000, curdate(), 16180339, '1 Wakanda Way'),
+       (5, 'Natalia', 'Romanova', 150000, curdate(), 60221407, '219 West 47th Street'),
+       (6, 'Stephen', 'Strange', 180000, curdate(), 29979245, '177A Bleecker Street'),
+       (7, 'Steven', 'Rogers', 50000, curdate(), 16021766, '219 West 47th Street'),
+       (8, 'Anthony', 'Stark', 1000000, curdate(), 91009383, '10880 Malibu Point'),
+       (9, 'Virginia', 'Potts', 200000, curdate(), 16772621, '10880 Malibu Point'),
+       (10, 'Janet', 'van Dyne', 140000, curdate(), 16747927, '601 Buena Vista Avenue West');
+
 CREATE TABLE Region_Manager (
     rID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     region VARCHAR(2)	NOT NULL,
@@ -23,6 +37,10 @@ CREATE TABLE Region_Manager (
     REFERENCES Employee (ID)
 );
 
+INSERT INTO Region_Manager(rID, region)
+VALUES (6, 'MA');
+
+DROP TABLE IF EXISTS Manager; 
 CREATE TABLE Manager (
     mID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     dealership_address VARCHAR(50)	NOT NULL,
@@ -32,6 +50,11 @@ CREATE TABLE Manager (
     
 );
 
+INSERT INTO Manager(mID, dealership_address)
+VALUES (7, '219 West 47th Street'),
+       (8, '10880 Malibu Point');
+
+DROP TABLE IF EXISTS Sales_person; 
 
 CREATE TABLE Sales_person (
     sID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -46,12 +69,23 @@ CREATE TABLE Sales_person (
 
 );
 
+INSERT INTO Sales_person(sID, dealership_address, date_hired, driver_license_number)
+VALUES (4, '219 West 47th Street', curdate(), 66743015),
+       (5, '219 West 47th Street', curdate(), 88541878),
+       (9, '10880 Malibu Point', curdate(), 12566370),
+       (10, '10880 Malibu Point', curdate(), 37673031);
+
 CREATE TABLE Vehicle(
 	vID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     vType VARCHAR(15) NOT NULL,
     problems VARCHAR(20),
 	date_of_purchase	DATE	NOT NULL
 );
+
+INSERT INTO Vehicle(vID, vType, problems, date_of_purchase)
+VALUES (1, 'car', 'fasteners stuck', curdate()),
+       (2, 'truck', 'musical horn broken', curdate()),
+       (3, 'car', 'bullet holes', curdate());
 
 CREATE TABLE Auto_mechanic(
 	aID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -68,6 +102,10 @@ CREATE TABLE Auto_mechanic(
     REFERENCES Vehicle (vID)
 );
 
+INSERT INTO Auto_mechanic(aID, dealership_address, date_hired, ID_vehicle_assigned)
+VALUES (1, '219 West 47th Street', curdate(), 1),
+       (2, '10880 Malibu Point', curdate(), 2),
+       (3, '219 West 47th Street', curdate(), 3);
 
 CREATE TABLE Car(
 	cID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -84,6 +122,10 @@ CREATE TABLE Car(
     REFERENCES Auto_mechanic (aID)
     
 );
+
+INSERT INTO Car(cID, brands, models, manufacture_state, technician_assigned)
+VALUES (1, 'Ford', 'Explorer', 'NY', 1),
+       (3, 'Chevrolet', 'Tahoe', 'NY', 3);
 
 CREATE TABLE Truck(
 	tID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -102,6 +144,9 @@ CREATE TABLE Truck(
     
 );
 
+INSERT INTO Truck(tID, brands, models, manufacture_state, technician_assigned)
+VALUES (2, 'Ford', 'Ecoline', 'CA', 2);
+
 CREATE TABLE Customer(
 	customer_ID	INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	first_name VARCHAR(20) NOT NULL,
@@ -111,3 +156,8 @@ CREATE TABLE Customer(
     FOREIGN KEY (vehicle_ID)
     REFERENCES vehicle (vID)
 );
+
+INSERT INTO Customer(customer_ID, first_name, last_name, vehicle_ID)
+VALUES (1, 'Richard', 'Reed', 1),
+       (2, 'Scott', 'Lang', 2),
+       (3, 'Nicholas', 'Fury', 3);
