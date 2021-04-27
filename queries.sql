@@ -1,3 +1,4 @@
+use dealership;
 ----------------------------------------------------------------------------------------------------
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -41,7 +42,6 @@ UPDATE Truck
 SET technician_assigned = 3
 WHERE technician_assigned = 1;
 ----------------------------------------------------------------------------------------------------
-
 DELETE FROM Truck 
 WHERE tID = 5;
 ----------------------------------------------------------------------------------------------------
@@ -50,6 +50,29 @@ UPDATE Customer
 SET first_name = 'Nathan'
 WHERE customer_ID = 1;
 ----------------------------------------------------------------------------------------------------
-
 DELETE FROM Customer 
 WHERE customer_ID = 7;
+----------------------------------------------------------------------------------------------------
+SELECT COUNT(*) AS 'number of employees' FROM Employee;
+----------------------------------------------------------------------------------------------------
+SELECT COUNT(*) AS 'number of mechanics'
+FROM Employee
+JOIN Auto_mechanic ON Employee.ID = Auto_mechanic.aID;
+----------------------------------------------------------------------------------------------------
+SELECT COUNT(*) AS 'number of managers'
+FROM Employee
+JOIN Manager ON Employee.ID = Manager.mID;
+----------------------------------------------------------------------------------------------------
+SELECT COUNT(*) AS 'number of sale persons'
+FROM Employee
+JOIN Sales_person ON Employee.ID = Sales_person.sID;
+----------------------------------------------------------------------------------------------------
+SELECT COUNT(*) AS 'number of customers'
+FROM Customer;
+----------------------------------------------------------------------------------------------------
+SELECT COUNT(*) AS 'number of region manager/manager'
+FROM Manager
+RIGHT JOIN Region_Manager ON Manager.mID = Region_Manager.rID;
+----------------------------------------------------------------------------------------------------
+SELECT COUNT(*) AS 'number of vehicles'
+FROM Vehicle;
