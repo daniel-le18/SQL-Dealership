@@ -133,3 +133,45 @@ RIGHT JOIN Region_Manager ON Manager.mID = Region_Manager.rID;
 ----------------------------------------------------------------------------------------------------
 SELECT COUNT(*) AS 'number of vehicles'
 FROM Vehicle;
+
+
+-----------------------------------------------------------------------------------------------------
+
+SELECT 
+    Vehicle.vID,
+    Vehicle.vType,
+    Auto_mechanic.aID,
+    Employee.first_name,
+    Employee.last_name
+FROM
+    Vehicle
+        INNER JOIN
+    Auto_mechanic ON Vehicle.vID = Auto_mechanic.ID_vehicle_assigned
+        INNER JOIN
+    Employee ON Employee.ID = Auto_mechanic.aID;
+ ---------------------------------------------------------------------------------------------------------
+
+SELECT ID, salary_anual FROM Employee;
+---------------------------------------------------------------------------------------------------------
+
+SELECT 
+    brands, Vehicle_Count.repairs
+FROM
+    (SELECT 
+        brands, Car.cID AS 'id'
+    FROM
+        Car UNION ALL (SELECT 
+        brands, Truck.tID AS 'id'
+    FROM
+        Truck)) brands,
+    (SELECT 
+        Vehicle.vID, COUNT(*) AS 'repairs'
+    FROM
+        Vehicle, Auto_mechanic
+    WHERE
+        Vehicle.vID = Auto_mechanic.ID_vehicle_assigned
+    GROUP BY Vehicle.vID) Vehicle_Count
+WHERE
+    brands.id = Vehicle_Count.vID
+ORDER BY Vehicle_Count.repairs DESC;
+
