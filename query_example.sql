@@ -143,6 +143,9 @@ FROM Truck;
 
 SELECT COUNT(*) AS 'NUMBER OF MANAGERS'
 FROM Manager;
+
+SELECT COUNT(*) AS 'REPAiRING'
+FROM Repairing;
 -----------------------------------------------------------------------------------------------------
 
 SELECT 
