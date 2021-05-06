@@ -182,4 +182,13 @@ insert into Truck (tID, brands , models, manufacture_state, technician_assigned)
 insert into Truck (tID, brands , models, manufacture_state, technician_assigned) values (3, 'Saab', '900', 'NY', 13);
 insert into Truck (tID, brands , models, manufacture_state, technician_assigned) values (9, 'Acura', 'NSX', 'SC', 11);
 
+INSERT INTO Customer(customer_ID, first_name, last_name, vehicle_ID)
+VALUES (1, 'Richard', 'Reed', 1),
+       (2, 'Scott', 'Lang', 2),
+       (3, 'Nate', 'smith', 3),
+       (4, 'john', 'smith', 3),
+       (5, 'jake', 'wilson', 3),
+       (6, 'Nicholas', 'johnson', 3),
+       (7, 'jim', 'johnson', 3);
+       
 select * from mysql.general_log;
