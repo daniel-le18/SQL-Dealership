@@ -1,3 +1,4 @@
+
 use dealership;
 
 ----------------------------------------------------------------------------------------------------
@@ -174,4 +175,19 @@ FROM
 WHERE
     brands.id = Vehicle_Count.vID
 ORDER BY Vehicle_Count.repairs DESC;
+---------------------------------------------------------------------------------------------------------
+SELECT 
+    vID,   
+    aID,
+    vType, date_started, date_ended
+FROM
+    Repairing R
+         JOIN
+    Employee E ON R.aID = E.ID 
+         JOIN
+	Vehicle V ON R.cID = V.vID;
 
+       
+   
+   
+	

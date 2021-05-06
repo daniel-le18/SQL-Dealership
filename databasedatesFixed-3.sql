@@ -1,7 +1,7 @@
 /********************************************************
 * This script creates the database named dealership
 *********************************************************/
- 
+ SET GLOBAL log_output = 'TABLE';      SET GLOBAL general_log = 'ON';
 DROP DATABASE IF EXISTS dealership;
 CREATE DATABASE dealership;
 USE dealership;
@@ -59,13 +59,13 @@ CREATE TABLE Auto_mechanic (
 
 CREATE TABLE Repairing (
 	aID INT,
-    vID INT,
+    cID INT,
     date_started DATE NOT NULL,
     date_ended DATE, 
-    PRIMARY KEY (aID, vID),
+    PRIMARY KEY (aID, cID),
 	CONSTRAINT Repairing_fk_Employee FOREIGN KEY (aID)
 		 REFERENCES Employee (ID),
-	CONSTRAINT Repairing_fk_Vehicle FOREIGN KEY (vID)
+	CONSTRAINT Repairing_fk_Vehicle FOREIGN KEY (cID)
 		REFERENCES Vehicle(vID)
 );
 
@@ -158,7 +158,16 @@ insert into Auto_mechanic (aID, dealership_address, date_hired, ID_vehicle_assig
 insert into Auto_mechanic (aID, dealership_address, date_hired, ID_vehicle_assigned) values (14, '1 Prairie Rose Junction', curdate()+ interval rand()*883 day, 10);
 insert into Auto_mechanic (aID, dealership_address, date_hired, ID_vehicle_assigned) values (15, '9 Twin Pines Circle', curdate()+ interval rand()*883 day, 8);
 
-insert into Repairing(aID)
+insert into Repairing(aID, cID, date_started, date_ended)
+values (11, 1, "2021-05-01", "2021-05-02"),
+(11, 2, "2021-05-02", "2021-03-05"),
+(11,3, "2021-05-03", "2021-05-04"),
+(12, 4, "2021-05-01", "2021-05-02"),
+(12, 5, "2021-05-02", "2021-05-03"),
+(13, 6, "2021-05-02", "2021-05-03"),
+(13,7,"2021-05-04", "2021-05-05"),
+(14,8,"2021-01-05", "2021-03-05"),
+(15, 9,"2021-05-01", "2021-05-02");
 
 
 insert into Car (cID, brands , models, manufacture_state, technician_assigned) values (5, 'Lexus', 'ES', 'NY', 14);
@@ -173,3 +182,4 @@ insert into Truck (tID, brands , models, manufacture_state, technician_assigned)
 insert into Truck (tID, brands , models, manufacture_state, technician_assigned) values (3, 'Saab', '900', 'NY', 13);
 insert into Truck (tID, brands , models, manufacture_state, technician_assigned) values (9, 'Acura', 'NSX', 'SC', 11);
 
+select * from mysql.general_log;
