@@ -1,7 +1,7 @@
 /********************************************************
 * This script creates the database named dealership
 *********************************************************/
-SET GLOBAL log_output = 'TABLE';      SET GLOBAL general_log = 'ON';
+# SET GLOBAL log_output = 'TABLE';      SET GLOBAL general_log = 'ON';
 DROP DATABASE IF EXISTS dealership;
 CREATE DATABASE dealership;
 USE dealership;
@@ -103,4 +103,4 @@ CREATE TABLE Customer (
 );
 
 
-select * from mysql.general_log;
+# select * from mysql.general_log;
