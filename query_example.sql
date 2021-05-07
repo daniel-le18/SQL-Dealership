@@ -1,4 +1,4 @@
-SET GLOBAL log_output = 'TABLE';      SET GLOBAL general_log = 'ON';
+#SET GLOBAL log_output = 'TABLE';      SET GLOBAL general_log = 'ON';
 use dealership;
 
 ----------------------------------------------------------------------------------------------------
@@ -198,7 +198,7 @@ FROM
          JOIN
 	Vehicle V ON R.cID = V.vID;
 
-select * from mysql.general_log;
+# select * from mysql.general_log;
    
    
 	
