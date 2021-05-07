@@ -135,7 +135,17 @@ RIGHT JOIN Region_Manager ON Manager.mID = Region_Manager.rID;
 SELECT COUNT(*) AS 'number of vehicles'
 FROM Vehicle;
 
+SELECT COUNT(*) AS 'NUMBER OF CARS'
+FROM Car;
 
+SELECT COUNT(*) AS 'NUMBER OF TRUCKS'
+FROM Truck;
+
+SELECT COUNT(*) AS 'NUMBER OF MANAGERS'
+FROM Manager;
+
+SELECT COUNT(*) AS 'REPAiRING'
+FROM Repairing;
 -----------------------------------------------------------------------------------------------------
 # Query all the truck/car the auto mechanics are working on 
 SELECT 
