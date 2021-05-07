@@ -137,7 +137,7 @@ FROM Vehicle;
 
 
 -----------------------------------------------------------------------------------------------------
-
+# Query all the truck/car the auto mechanics are working on 
 SELECT 
     Vehicle.vID,
     Vehicle.vType,
@@ -151,10 +151,10 @@ FROM
         INNER JOIN
     Employee ON Employee.ID = Auto_mechanic.aID;
  ---------------------------------------------------------------------------------------------------------
-
+# Show the cost of All the employees annually 
 SELECT ID, salary_anual FROM Employee;
 ---------------------------------------------------------------------------------------------------------
-
+# Show the vehicles that had been repaired the most 
 SELECT 
     brands, Vehicle_Count.repairs
 FROM
@@ -176,6 +176,7 @@ WHERE
     brands.id = Vehicle_Count.vID
 ORDER BY Vehicle_Count.repairs DESC;
 ---------------------------------------------------------------------------------------------------------
+# show the mechanic id along with the vehicles he is working on vID and service time 
 SELECT 
     vID,   
     aID,
